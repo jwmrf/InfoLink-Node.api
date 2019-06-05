@@ -1,8 +1,5 @@
 const variaveis = require('../infoLink.api/config/sistema/variaveis');
 var teste2 = require('request');
-teste2('https://www.imdb.com/title/tt1583421',function(err,res,body){
-    console.log(typeof(res.body));
-});
 
 
 //teste.use(bodyParser.json());
