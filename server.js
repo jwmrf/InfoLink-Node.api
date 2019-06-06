@@ -9,4 +9,3 @@ servidor = require('../infoLink.api/config/sistema/express');
 
 servidor.listen(5000,() => { console.log(variaveis.servidor.mensagem)});
 
-//teste.use('/piru',teste2);z\x\zx\zx\zxz
