@@ -14,14 +14,17 @@
         <div class="mdl-cell mdl-cell--6-col mdl-cell--2-offset backgroung formControl" id="divForm">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <label>Url</label>
-                    <input name="url" class="mdl-textfield__input" type="text" id="url">
+                    <input name="url" class="mdl-textfield__input" type="text" id="url" placeholder="Informe a Url...">
                     <input type="hidden" name="fudeu" id="fudeu" value="1">
 
                 </div>
                 <div>
                     <button id="send" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                        Button
+                        Consultar
                     </button>
+                </div>
+                <div>
+                    Wilson Filho; Web Crowler Image Api.
                 </div>
 
         </div>
@@ -57,7 +60,6 @@
 </style>
 <script>
     //var a = document.getElementById("url").setAttribute("value","porra");
-    $("#url").val("testes");
     $("#send").on("click", async function () {
         var urlForm = $("#url").val();
         var a = await $.post('api/consulta', {
