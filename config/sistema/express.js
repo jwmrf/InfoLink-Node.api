@@ -8,12 +8,12 @@ const apijs = require('../../app/modules/api');
 let _ctrl = new controller();
 let api = new apijs();
 
-rotas.get('/',_ctrl.getAll);
-rotas.get('/observatorio',function(req,res){
-    res.sendFile("D:/Program Files/Git/projeto/infoLink.api/observatorio-mdl/perfil.html");
-});
+//rotas.get('/',_ctrl.getAll);
+rotas.get('/',function(req,res){
+    res.send('<input type="text" value="teste">');
+})
 rotas.get('/consulta',function(req,res){
-    res.sendFile("D:/Program Files/Git/projeto/infoLink.api/public/views/consulta.html");
+    res.sendFile("../../../public/views/consulta.html");
 });
 rotas.get('/api/:id',api.start);
 rotas.post('/api/consulta',function(req,res){
