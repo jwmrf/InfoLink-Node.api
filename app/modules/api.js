@@ -15,8 +15,8 @@ VideoCrowler.prototype.start = async function (req, res) {
 
 
   //Transformar em função
-  var retorno = await PegaImagens('https://www.xvideos.com/video48181975/daughter_gets_caught_making_a_video_by_her_dad_kinkycouple111');
-  console.log(retorno);
+  var retorno = await PegaImagens(req);
+  return retorno;
 };
 function TrataUrl(url) {
   return new Promise(function (resolve, reject) {

@@ -1,11 +1,12 @@
 const variaveis = require('../infoLink.api/config/sistema/variaveis');
 var teste2 = require('request');
+const bodyParser = require('body-parser');
 
 
-//teste.use(bodyParser.json());
-//teste.use(bodyParser.urlencoded({extended: false}));
 
 servidor = require('../infoLink.api/config/sistema/express');
 
 servidor.listen(5000,() => { console.log(variaveis.servidor.mensagem)});
 
+servidor.use(bodyParser.json());
+servidor.use(bodyParser.urlencoded({extended: false}));
