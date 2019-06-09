@@ -1,0 +1,31 @@
+{
+  "name": "info-link-api",
+  "version": "1.0.0",
+  "description": "Web Crowler Api",
+  "main": "server.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "image-size": "^0.7.4",
+    "mongoose": "^5.5.11",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node server",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwmrf/InfoLink-Node.api.git"
+  },
+  "keywords": [
+    "node.js"
+  ],
+  "author": "Jose Wilson Madruga Rezende Filho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jwmrf/InfoLink-Node.api/issues"
+  },
+  "homepage": "https://github.com/jwmrf/InfoLink-Node.api#readme"
+}
