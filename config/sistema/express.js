@@ -8,11 +8,11 @@ const apijs = require('../../app/modules/api');
 let _ctrl = new controller();
 let api = new apijs();
 
-rotas.get('/',_ctrl.getAll);
+//rotas.get('/',_ctrl.getAll);
 rotas.get('/observatorio',function(req,res){
     res.sendFile("D:/Program Files/Git/projeto/infoLink.api/observatorio-mdl/perfil.html");
 });
-rotas.get('/consulta',function(req,res){
+rotas.get('/',function(req,res){
     var caminho = ( __dirname+'/consulta.html');
     res.sendFile(caminho);
 });
