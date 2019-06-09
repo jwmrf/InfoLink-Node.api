@@ -1,4 +1,4 @@
-const variaveis = require('../infoLink.api/config/sistema/variaveis');
+const variaveis = require('../infoLink.api/config/sistema/variaveis.js');
 var teste2 = require('request');
 const bodyParser = require('body-parser');
 
