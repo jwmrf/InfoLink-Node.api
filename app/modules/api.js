@@ -12,11 +12,14 @@ function VideoCrowler() {
 }
 
 VideoCrowler.prototype.start = async function (req, res) {
+  maior = 0;
+  //console.log("Entrou na start");
 
   var retorno = await PegaImagens(req);
   return retorno;
 };
 function TrataUrl(url) {
+  //console.log("Entrou na trata url");
   return new Promise(function (resolve, reject) {
     let verificaHttp = url.search("http");
     resolve(verificaHttp);
@@ -25,6 +28,7 @@ function TrataUrl(url) {
 
 }
 function PegaImagens(url) {
+  //console.log("Entrou na pega imagens");
   return new Promise( function (resolve, reject) {
 
     request(url, function (erro, resposta, body) {
@@ -61,6 +65,7 @@ function PegaImagens(url) {
   });
 }
 function PegaTamanho(urlImagem) {
+  //console.log("Entrou na pega tamanho");
   var options = url.parse(urlImagem);
   return new Promise(function (resolve, reject) {
     http.get(urlImagem, function (response) {
