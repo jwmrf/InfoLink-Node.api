@@ -27,9 +27,9 @@ function TrataUrl(url) {
 
 }
 function PegaImagens(url) {
-  return new Promise(function (resolve, reject) {
+  return new Promise( async function (resolve, reject) {
 
-    request(url, function (erro, resposta, body) {
+    await request(url, function (erro, resposta, body) {
       if (erro) {
         console.log(erro);
       }
@@ -48,16 +48,18 @@ function PegaImagens(url) {
                 maior = tamanho.width * tamanho.height;
                 urlFinal = imagem.attr('src');
                 console.log("- - - - - - - ");
-                resolve(urlFinal);
-
                 
-
               }
             }
           }
         }
       });
+      
     });
+    setTimeout(function(){
+      resolve(urlFinal);
+    },3000);
+
   });
 }
 function PegaTamanho(urlImagem) {
