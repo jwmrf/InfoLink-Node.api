@@ -13,8 +13,6 @@ function VideoCrowler() {
 
 VideoCrowler.prototype.start = async function (req, res) {
 
-
-  //Transformar em função
   var retorno = await PegaImagens(req);
   return retorno;
 };
@@ -27,9 +25,9 @@ function TrataUrl(url) {
 
 }
 function PegaImagens(url) {
-  return new Promise( async function (resolve, reject) {
+  return new Promise( function (resolve, reject) {
 
-    await request(url, function (erro, resposta, body) {
+    request(url, function (erro, resposta, body) {
       if (erro) {
         console.log(erro);
       }

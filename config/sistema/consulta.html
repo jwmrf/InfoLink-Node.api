@@ -35,9 +35,9 @@
 
             </div>
             <div>
-                <button id="send" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                    Button
-                </button>
+                <a href="" target="_blank" id="resultLink" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                    Imagem
+                </a>
             </div>
 
         </div>
@@ -68,5 +68,6 @@
         $("#divForm").addClass("hidden");
         $("#divResult").removeClass("hidden");
         $("#result").val(a);
+        $("#resultLink").attr("href",a);
     });
 </script>
