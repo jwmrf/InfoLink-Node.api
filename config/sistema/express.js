@@ -20,8 +20,8 @@ rotas.post('/api/consulta',function(req,res){
     });
     req.on('end', async () => {
         body = parse(body);
-        var teste = await api.start(body.url);
-        res.send(teste);
+        var params = await api.start(body.url);
+        res.send(params);
     });
 });
 

@@ -33,8 +33,11 @@ function PegaImagens(url) {
 
     request(url, function (erro, resposta, body) {
       if (erro) {
+        resolve("Erro, tente outra url");
         console.log(erro);
-      }
+      }else{
+
+      
 
       var site = jQuery.load(body);
 
@@ -56,6 +59,7 @@ function PegaImagens(url) {
           }
         }
       });
+    }
       
     });
     setTimeout(function(){
