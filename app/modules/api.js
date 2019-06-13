@@ -32,7 +32,11 @@ class VideoCrowler {
     return new Promise(function (resolve, reject) {
       let lista = [];
       let maior = 0;
+      if(undefined == site('img').last().attr('src')){
+        resolve("Erro, tente outra url");
+      }
       site('img').each(async function () {
+        
         var imagem = site(this);
         let verifica = await new VideoCrowler().TrataUrl(imagem.attr('src'));
         if (verifica >= 0) {
@@ -49,14 +53,12 @@ class VideoCrowler {
         // Quando a imagem do 'Each' for a última da página, ele dispara o timer de 2 segundos para retorno
         if (imagem.attr('src') == site('img').last().attr('src')) {
           setTimeout(function () {
-            console.log(lista);
             resolve(lista[0]);
           }, 2000);
         }
       });
     });
   }
-
 
   PegaImagens(url) {
     return new Promise(function (resolve, reject) {
@@ -68,7 +70,6 @@ class VideoCrowler {
           var site = jQuery.load(body);
           var maiorImagem = await new VideoCrowler().Requesta(site);
           resolve(maiorImagem);
-
         }
       });
     });
