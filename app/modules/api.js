@@ -5,100 +5,89 @@ var sizeOf = require('image-size');
 var url = require('url');
 var http = require('https');
 
-let maior = 0;
-global.urlFinal = "";
+class VideoCrowler {
+  constructor() {
 
-function VideoCrowler() {
-}
+  }
 
-VideoCrowler.prototype.start = async function (req, res) {
-  urlFinal = "";
-  maior = 0;
-  //console.log("Entrou na start");
+  //Método inicial que recebe a url do website.
+  async start(req, res) {
+    //console.log("Entrou na start");
+    var retorno = await this.PegaImagens(req);
+    return retorno;
+  }
 
-  var retorno = await PegaImagens(req);
-  return retorno;
-};
-function TrataUrl(url) {
-  //console.log("Entrou na trata url");
-  return new Promise(function (resolve, reject) {
-    if (url == undefined) {
-      resolve(-1);
-    }
-    let verificaHttp = url.search("http");
-    resolve(verificaHttp);
-  });
+  //Responsável por verificar se o SRC da tag imagem é um endereço http.
+  TrataUrl(url) {
+    return new Promise(function (resolve, reject) {
+      if (url == undefined) {
+        resolve(-1);
+      }
+      let verificaHttp = url.search("http");
+      resolve(verificaHttp);
+    });
+  }
 
-
-}
-
-function Requesta(site) {
-  return new Promise(function (resolve, reject) {
-
-    site('img').each(async function () {
-      var imagem = site(this);
-      let verifica = await TrataUrl(imagem.attr('src'));
-      if (verifica >= 0) {
-        var tamanho = await PegaTamanho(imagem.attr('src'));
-
-        if (tamanho != undefined) {
-          if (tamanho.width > tamanho.height && tamanho.type != 'gif') {
-            if (tamanho.width * tamanho.height > maior) {
-              maior = tamanho.width * tamanho.height;
-              urlFinal = imagem.attr('src');
-              console.log(imagem.attr('src'));
-
-
+  Requesta(site) {
+    return new Promise(function (resolve, reject) {
+      let lista = [];
+      let maior = 0;
+      site('img').each(async function () {
+        var imagem = site(this);
+        let verifica = await new VideoCrowler().TrataUrl(imagem.attr('src'));
+        if (verifica >= 0) {
+          var tamanho = await new VideoCrowler().PegaTamanho(imagem.attr('src'));
+          if (tamanho != undefined) {
+            if (tamanho.width > tamanho.height && tamanho.type != 'gif') {
+              if (tamanho.width * tamanho.height > maior) {
+                maior = tamanho.width * tamanho.height;
+                lista.unshift(imagem.attr('src'));
+              }
             }
           }
         }
-      }
-      if (imagem.attr('src') == site('img').last().attr('src') ) {
-        setTimeout(function () {
-          resolve(urlFinal);
-        }, 5000);
-
-      }
-
-    });
-  });
-}
-
-function PegaImagens(url) {
-  //console.log("Entrou na pega imagens");
-  return new Promise(function (resolve, reject) {
-
-    request({ method: 'GET', url: url, headers: { 'User-Agent': 'curl/7.47.0' } },async function (erro, resposta, body) {
-      if (erro) {
-        resolve("Erro, tente outra url");
-        console.log(erro);
-      } else {
-        var site = jQuery.load(body);
-        await Requesta(site);
-        resolve(urlFinal);
-
-      }
-
-    });
-
-
-  });
-}
-function PegaTamanho(urlImagem) {
-  //console.log("Entrou na pega tamanho");
-  var options = url.parse(urlImagem);
-  return new Promise(function (resolve, reject) {
-    http.get(urlImagem, function (response) {
-      var chunks = [];
-      response.on('data', function (chunk) {
-        chunks.push(chunk);
-      }).on('end', function () {
-        var buffer = Buffer.concat(chunks);
-        resolve(sizeOf(buffer));
+        // Quando a imagem do 'Each' for a última da página, ele dispara o timer de 2 segundos para retorno
+        if (imagem.attr('src') == site('img').last().attr('src')) {
+          setTimeout(function () {
+            console.log(lista);
+            resolve(lista[0]);
+          }, 2000);
+        }
       });
-
     });
-  })
-};
+  }
 
+
+  PegaImagens(url) {
+    return new Promise(function (resolve, reject) {
+      request({ method: 'GET', url: url, headers: { 'User-Agent': 'curl/7.47.0' } }, async function (erro, resposta, body) {
+        if (erro) {
+          resolve("Erro, tente outra url");
+          console.log(erro);
+        } else {
+          var site = jQuery.load(body);
+          var maiorImagem = await new VideoCrowler().Requesta(site);
+          resolve(maiorImagem);
+
+        }
+      });
+    });
+  }
+
+  //Utilizia biblioteca Image-size, dando get no endereço da imagem e retornando suas propriedades.
+  PegaTamanho(urlImagem) {
+    var options = url.parse(urlImagem);
+    return new Promise(function (resolve, reject) {
+      http.get(urlImagem, function (response) {
+        var chunks = [];
+        response.on('data', function (chunk) {
+          chunks.push(chunk);
+        }).on('end', function () {
+          var buffer = Buffer.concat(chunks);
+          resolve(sizeOf(buffer));
+        });
+      });
+    })
+  };
+}
 module.exports = VideoCrowler;
