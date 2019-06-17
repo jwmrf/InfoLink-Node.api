@@ -33,7 +33,7 @@ class VideoCrowler {
       let lista = [];
       let maior = 0;
       if(undefined == site('img').last().attr('src')){
-        resolve("Erro, tente outra url");
+        lista.unshift("Erro, tente outra url");
       }
       site('img').each(async function () {
         
