@@ -54,7 +54,7 @@ class VideoCrowler {
         if (imagem.attr('src') == site('img').last().attr('src')) {
           setTimeout(function () {
             resolve(lista[0]);
-          }, 2000);
+          }, 1500);
         }
       });
     });
