@@ -84,8 +84,8 @@
         });
         $("#loading").addClass("hidden");
         $("#divResult").removeClass("hidden");
-        $("#result").val(a);
-        $("#resultLink").attr("href", a);
+        $("#result").val(a['url']);
+        $("#resultLink").attr("href", a['url']);
     });
     $("#voltarForm").click(function(){
         $("#result").val("");
