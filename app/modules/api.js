@@ -4,15 +4,21 @@ var jQuery = require('cheerio');
 var sizeOf = require('image-size');
 var url = require('url');
 var http = require('https');
+const linkSchema = require('../schemas/linksSchema');
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://admin:arkantos2008@ds255107.mlab.com:55107/info-link', { useNewUrlParser: true })
 
 class VideoCrowler {
   constructor() {
-
+    this._id =  ""
   }
-
+  
   //Método inicial que recebe a url do website.
   async start(req, res) {
-    //console.log("Entrou na start");
+
+    this._id = await linkSchema(req);
+
+    console.log("Entrou na start");
     var retorno = await this.PegaImagens(req);
     return retorno;
   }
@@ -32,11 +38,11 @@ class VideoCrowler {
     return new Promise(function (resolve, reject) {
       let lista = [];
       let maior = 0;
-      if(undefined == site('img').last().attr('src')){
+      if (undefined == site('img').last().attr('src')) {
         lista.unshift("Erro, tente outra url");
       }
       site('img').each(async function () {
-        
+
         var imagem = site(this);
         let verifica = await new VideoCrowler().TrataUrl(imagem.attr('src'));
         if (verifica >= 0) {
@@ -52,7 +58,8 @@ class VideoCrowler {
         }
         // Quando a imagem do 'Each' for a última da página, ele dispara o timer de 2 segundos para retorno
         if (imagem.attr('src') == site('img').last().attr('src')) {
-          setTimeout(function () {
+          setTimeout( async function () {
+            linkSchema("teste",this._id,lista[0]);
             resolve(lista[0]);
           }, 1500);
         }
