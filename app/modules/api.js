@@ -102,7 +102,6 @@ class VideoCrowler {
 
   //Utilizi a biblioteca Image-size, dando get no endereço da imagem e retornando suas propriedades.
   PegaTamanho(urlImagem) {
-    var options = url.parse(urlImagem);
     return new Promise(function (resolve, reject) {
       http.get(urlImagem, function (response) {
         var chunks = [];
@@ -110,7 +109,11 @@ class VideoCrowler {
           chunks.push(chunk);
         }).on('end', function () {
           var buffer = Buffer.concat(chunks);
-          resolve(sizeOf(buffer));
+          try{
+            resolve(sizeOf(buffer));
+          }catch(erro){
+            resolve(undefined)
+          }
         });
       });
     })
