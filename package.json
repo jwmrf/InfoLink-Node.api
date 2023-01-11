@@ -6,7 +6,7 @@
   "dependencies": {
     "@types/cheerio": "^0.22.13",
     "cheerio": "^1.0.0-rc.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "image-size": "^0.7.4",
     "mongoose": "^5.5.11",
     "request": "^2.88.0"
