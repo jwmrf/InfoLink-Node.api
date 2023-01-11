@@ -6,7 +6,7 @@ var url = require('url');
 var http = require('https');
 const linkSchema = require('../schemas/linksSchema');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://admin:arkantos2008@ds255107.mlab.com:55107/info-link', { useNewUrlParser: true })
+//mongoose.connect('mongodb://admin:arkantos2008@ds255107.mlab.com:55107/info-link', { useNewUrlParser: true })
 
 class VideoCrowler {
   constructor() {
