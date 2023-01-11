@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 servidor = require('./config/sistema/express');
 
-servidor.listen(process.env.PORT || 5000,() => { console.log(variaveis?.servidor?.mensagem)});
+servidor.listen(process.env.PORT || 3000,() => { console.log(process.env.PORT)});
 
 servidor.use(bodyParser.json());
 servidor.use(bodyParser.urlencoded({extended: false}));
