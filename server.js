@@ -1,12 +1,12 @@
-const variaveis = require('../app/config/sistema/variaveis');
+const variaveis = require('./config/sistema/variaveis');
 var teste2 = require('request');
 const bodyParser = require('body-parser');
 
 
 
-servidor = require('../app/config/sistema/express');
+servidor = require('./config/sistema/express');
 
-servidor.listen(process.env.PORT || 5000,() => { console.log(variaveis.servidor.mensagem)});
+servidor.listen(process.env.PORT || 5000,() => { console.log(variaveis?.servidor?.mensagem)});
 
 servidor.use(bodyParser.json());
 servidor.use(bodyParser.urlencoded({extended: false}));
