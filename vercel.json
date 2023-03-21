@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "(.*)",
-            "dest": "config/sistema/server.js"
+            "dest": "config/sistema/express.js"
         },
         {
             "src": "/teste",
