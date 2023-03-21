@@ -9,7 +9,7 @@ let api = new apijs();
 
 
 rotas.get('/',function(req,res){
-    var caminho = ( __dirname+'/consulta.html');
+    //var caminho = ( __dirname+'/consulta.html');
     res.send("Express on Vercels");
     //res.sendFile(caminho);
 });
