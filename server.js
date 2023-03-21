@@ -1,12 +1,14 @@
-const variaveis = require('./config/sistema/variaveis');
-var teste2 = require('request');
-const bodyParser = require('body-parser');
+const express = require("express");
 
+const app = express();
 
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
 
-servidor = require('./config/sistema/express');
+app.listen(5000, () => {
+  console.log("Running on port 5000.");
+});
 
-servidor.listen(process.env.PORT || 3000,() => { console.log(process.env.PORT)});
-
-servidor.use(bodyParser.json());
-servidor.use(bodyParser.urlencoded({extended: false}));
+// Export the Express API
+module.exports = app;

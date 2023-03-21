@@ -1,6 +1,6 @@
 {
     "name": "cover-image-crawler",
-    "version": 1,
+    "version": 2,
     "public": true,
     "build": {
         "src": "server.js",
@@ -10,6 +10,10 @@
         {
             "src": "/(.*)",
             "dest": "server.js"
+        },
+        {
+            "src": "/teste",
+            "dest": "config/sistema/consulta.html"
         }
     ]
 }

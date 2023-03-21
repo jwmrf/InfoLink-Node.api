@@ -13,6 +13,7 @@ rotas.get('/',function(req,res){
     res.sendFile(caminho);
 });
 
+
 rotas.post('/api/consulta',function(req,res){
     let body = '';
     req.on('data', chunk => {
