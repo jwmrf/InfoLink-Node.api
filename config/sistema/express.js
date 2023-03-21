@@ -10,8 +10,8 @@ let api = new apijs();
 
 rotas.get('/',function(req,res){
     var caminho = ( __dirname+'/consulta.html');
-    res.send(caminho);
-    //res.sendFile(caminho);
+    //res.send(caminho);
+    res.sendFile(caminho);
 });
 
 
