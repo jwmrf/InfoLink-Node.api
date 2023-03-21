@@ -1,19 +1,5 @@
 {
-    "name": "cover-image-crawler",
-    "version": 2,
-    "public": true,
-    "build": {
-        "src": "server.js",
-        "use": "@vercel/node"
-    },
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "server.js"
-        },
-        {
-            "src": "/teste",
-            "dest": "config/sistema/consulta.html"
-        }
-    ]
-}
+
+    "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+  
+  }
