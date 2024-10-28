@@ -1,5 +1,6 @@
 const express = require('express');
 const { parse }  = require('querystring');
+const path = require('path');
 const servidor = express();
 const rotas = express.Router();
 const controller = require('../../app/controller/InfolinkController');
@@ -10,7 +11,6 @@ let api = new apijs();
 
 rotas.get('/',function(req,res){
     var caminho = ( __dirname+'/consulta.html');
-    //res.send(caminho);
     res.sendFile(caminho);
 });
 
@@ -28,5 +28,6 @@ rotas.post('/api/consulta',function(req,res){
     });
 });
 
+servidor.use(express.static(path.join(__dirname+'/../..', 'public')));
 servidor.use('/',rotas);
 module.exports = servidor;

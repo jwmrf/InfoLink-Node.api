@@ -1,7 +1,7 @@
 const variaveis ={
     servidor: {
         porta: 3000,
-        mensagem: "O GIGANTE ACORDOU"
+        mensagem: "Server Started Successfully"
     },
     banco: {
         conectar: "sss"
